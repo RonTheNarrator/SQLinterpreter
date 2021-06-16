@@ -1,4 +1,4 @@
-package HelperClasses.Operators;
+package HelperClasses;
 
 import DB.DBTable;
 import DB.Schema;
@@ -28,4 +28,8 @@ public class InsertInto extends BaseHelper {
         iCol++;
     }
 
+    @Override
+    public void startRequest() {
+        dbTable.nextRow();
+    }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 public class DBTable {
 
 
-    public int LastRow = -1;
+    public int LastRow = 0;
     public Map<String, Map<Integer, Float>> ColumnsF = new LinkedHashMap<>();
     public Map<String, Map<Integer, String>> ColumnsS = new LinkedHashMap<>();
     public Map<String, Map<Integer, Boolean>> ColumnsB = new LinkedHashMap<>();
@@ -45,10 +45,20 @@ public class DBTable {
     }
 
     public void insertData(String colName,String data) throws Exception {
-        if (ColumnsF.containsKey(colName)) ColumnsF.get(colName).put(LastRow,Float.parseFloat(data));
-        if (ColumnsS.containsKey(colName)) ColumnsS.get(colName).put(LastRow,data);
-        if (ColumnsB.containsKey(colName)) ColumnsB.get(colName).put(LastRow,Boolean.parseBoolean(data));
+        if (ColumnsF.containsKey(colName)){
+            ColumnsF.get(colName).put(LastRow,Float.parseFloat(data));
+            return;
+        }
+        if (ColumnsS.containsKey(colName)) {
+            ColumnsS.get(colName).put(LastRow,data);
+            return;
+        }
+        if (ColumnsB.containsKey(colName)) {
+            ColumnsB.get(colName).put(LastRow,Boolean.parseBoolean(data));
+            return;
+        }
         throw new Exception("Column" + colName + "doesnt exist");
     }
-
+    public void nextRow(){LastRow++;}
+    public int getRowCount(){return LastRow;}
 }

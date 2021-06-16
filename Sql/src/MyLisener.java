@@ -90,7 +90,7 @@ public class MyLisener extends SqlBaseListener{
 
     @Override
     public void exitInsert(SqlParser.InsertContext ctx) {
-        super.enterInsert(ctx);
+        current.startRequest();
     }
 
     @Override
@@ -109,7 +109,7 @@ public class MyLisener extends SqlBaseListener{
 
     @Override
     public void exitInsertValue(SqlParser.InsertValueContext ctx) {
-        current.startRequest();
+
     }
 
     @Override

@@ -8,11 +8,18 @@ public class application {
 
     public static void main(String[] args) {
 
-        String stringTestowy = "Create Table lel ( test Float );" +
-                "Insert Into lel ( test ) Values ( 1 );" +
-                "Insert Into lel ( test ) Values ( 2 );" +
-                "Select test From lel;" +
-                "Select test , 'dwa' From lel;";
+        String stringTestowy = "Create Table tab ( test Float );" +
+                "Insert Into tab ( test ) Values ( 1 );" +
+                "Insert Into tab ( test ) Values ( 2 );" +
+                "Select test From tab;" +
+                "Select test , 'dwa' From tab;" +
+                "Create Table numery ( test Float , str Text );" +
+                "Insert Into numery ( test , str ) Values ( 0 , 'zero' );" +
+                "Insert Into numery ( test , str ) Values ( 1 , 'jeden' );" +
+                "Insert Into numery ( test , str ) Values ( 2 , 'dwa' );" +
+                "Insert Into numery ( test , str ) Values ( 3 , 'trzy' );" +
+                "Select test From numery;" +
+                "Select ( 2*3 ) = 5 ;";
         SqlLexer lexer = new SqlLexer(CharStreams.fromString(stringTestowy));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);

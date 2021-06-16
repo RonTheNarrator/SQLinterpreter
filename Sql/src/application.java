@@ -19,7 +19,9 @@ public class application {
                 "Insert Into numery ( test , str ) Values ( 2 , 'dwa' );" +
                 "Insert Into numery ( test , str ) Values ( 3 , 'trzy' );" +
                 "Select test From numery;" +
-                "Select ( 2*3 ) = 5 ;";
+                "Select (2*3) , (3 > 5);";
+
+
         SqlLexer lexer = new SqlLexer(CharStreams.fromString(stringTestowy));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);

@@ -32,7 +32,7 @@ public class Table {
     }
 
     public int getRowNumber(){
-        return 0;
+        return dbTable.getRowCount();
     }
 
 }

@@ -3,14 +3,8 @@ import HelperClasses.CreateTable;
 import HelperClasses.Expression.ColumnRef;
 import HelperClasses.Expression.DataField;
 import HelperClasses.Expression.Operator;
-import HelperClasses.Expressions.Condition;
 import HelperClasses.Expression.Expression;
-import HelperClasses.Expressions.Formula;
-import HelperClasses.Expressions.Variable;
-import HelperClasses.Operators.InsertInto;
-import HelperClasses.Operators.OperatorC;
-import HelperClasses.Operators.OperatorL;
-import HelperClasses.Operators.OperatorM;
+import HelperClasses.InsertInto;
 import HelperClasses.Select;
 import HelperClasses.Table;
 
@@ -23,6 +17,10 @@ public class MyLisener extends SqlBaseListener{
     @Override
     public void enterSelect(SqlParser.SelectContext ctx) {
         current = new Select();
+    }
+
+    public void exitSelect(SqlParser.SelectContext ctx) {
+        current.startRequest();
     }
 
     @Override
@@ -110,8 +108,13 @@ public class MyLisener extends SqlBaseListener{
     }
 
     @Override
+    public void exitInsertValue(SqlParser.InsertValueContext ctx) {
+        current.startRequest();
+    }
+
+    @Override
     public void enterTable(SqlParser.TableContext ctx) {
-        current.addTables(new Table(ctx.getText()));
+        current.addTables(ctx.getText());
     }
 
     @Override public void

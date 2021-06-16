@@ -7,6 +7,7 @@ public class ColumnRef extends Expression{
 
     public ColumnRef(String name){
         this.name = name;
+        this.complete = true;
     }
 
     @Override public boolean CalculateB(Table tab, int rowNum){

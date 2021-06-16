@@ -11,7 +11,7 @@ public class Select extends BaseHelper {
     List<String> Columns = new ArrayList<>();
     List<String> Tables  = new ArrayList<>();
     List<Expression> selectExpr = new ArrayList<>();
-    Table tab;
+    Table tab = null;
 
     @Override
     public void addColumn(String name){
@@ -21,7 +21,7 @@ public class Select extends BaseHelper {
     @Override
     public void addTables(String name){
         Tables.add(name);
-        tab = new Table(name);
+        this.tab = new Table(name);
     }
 
     public void addWhere(){
@@ -50,9 +50,9 @@ public class Select extends BaseHelper {
     };
 
     @Override
-    public void startRequest(Schema schema){
+    public void startRequest(){
 
-
+        Schema schema = Schema.getInstance();
         int rowCount;
         if (tab != null) rowCount =tab.getRowNumber();
         else rowCount = 1;
@@ -67,7 +67,7 @@ public class Select extends BaseHelper {
         }
 
         // Zwracaj kolejne rzędy
-        for (int i = 0; i < tab.getRowNumber(); i++) {
+        for (int i = 0; i < rowCount; i++) {
             try {
                 for (Expression e : selectExpr){
                     switch (e.type){
@@ -75,6 +75,7 @@ public class Select extends BaseHelper {
                         case Bool -> System.out.print(e.CalculateB(tab,i));
                         case String -> System.out.print(e.CalculateS(tab,i));
                     }
+                    System.out.print(" ");
                 }
                 System.out.print("\n");
             } catch (Exception exception) {

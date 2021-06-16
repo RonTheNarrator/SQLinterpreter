@@ -76,7 +76,7 @@ String: ('"' .*? '"' | '\'' .*? '\''); // Non-greedy -> .*? dopasowuje wszystko 
 
 
 start
-    : (select | insert | create) SColon
+    : (select | insert | create) SColon ( (select | insert | create) SColon )*  EOF
     ;
 select
     : Select selectItemList From table whereStatement? (Order By Id Descending? )? // ToDo : OrderBy
